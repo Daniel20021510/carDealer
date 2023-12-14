@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"/>
+<body>
+<div id="wrapper">
+    <div th:replace="fragments/header"></div>
+    <section>
+        <header class="major">
+            <h2>Add Model</h2>
+        </header>
+        <form th:method="post" th:action="@{/models/add}" th:object="${modelModel}">
+            <div class="fields">
+                <div class="field half">
+                    <label for="name">Name</label>
+                    <input th:field="*{name}" th:errorclass="is-invalid" type="text" name="name" id="name"/>
+                    <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Error
+                        message</small>
+                </div>
+                <div class="field quarter">
+                    <label>Choose Model Category:</label>
+
+                    <select id="category" th:field="*{category}" th:errorclass="is-invalid">
+                        <option th:value="Car">Car</option>
+                        <option th:value="Buss">Buss</option>
+                        <option th:value="Truck">Truck</option>
+                    </select>
+                    <small th:if="${#fields.hasErrors('category')}" th:errors="*{category}"
+                           class="text-danger">Error message</small>
+                </div>
+                <div class="field half">
+                    <label for="name">Image Url</label>
+                    <input th:field="*{imageUrl}" th:errorclass="is-invalid" type="text" name="imageUrl" id="imageUrl"/>
+                    <small th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="text-danger">Error
+                        message</small>
+                </div>
+                <div class="field half">
+                    <label for="name">Start Year</label>
+                    <input th:field="*{startYear}" th:errorclass="is-invalid" type="text" name="startYear"
+                           id="startYear"/>
+                    <small th:if="${#fields.hasErrors('startYear')}" th:errors="*{startYear}" class="text-danger">Error
+                        message</small>
+                </div>
+                <div class="field half">
+                    <label for="name">End Year</label>
+                    <input th:field="*{endYear}" th:errorclass="is-invalid" type="text" name="endYear" id="endYear"/>
+                    <small th:if="${#fields.hasErrors('endYear')}" th:errors="*{endYear}" class="text-danger">Error
+                        message</small>
+                </div>
+
+
+
+
+                <div class="field quarter">
+                    <label>Brand:</label>
+
+                    <select id="brand" th:field="*{brandName}" th:errorclass="is-invalid">
+                        <option th:each="brand : ${availableBrands}"
+                                th:value="${brand.name}"
+                                th:text="${brand.name}"></option>
+                    </select>
+                    <small th:if="${#fields.hasErrors('brandName')}" th:errors="*{brandName}"
+                           class="text-danger">Error message</small>
+                </div>
+
+
+                <div class="field half text-right">
+                    <ul class="actions">
+                        <li><input type="submit" value="Add Model" class="primary"></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+<footer th:replace="fragments/footer"/>
+<div th:replace="fragments/navbar"></div>
+<div th:replace="fragments/scripts"></div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"/>
+<body>
+<div id="wrapper">
+    <div th:replace="fragments/header"></div>
+    <section>
+        <header class="major">
+            <h2>Add Offer</h2>
+        </header>
+        <form th:method="post" th:action="@{/offers/add}" th:object="${offerModel}">
+            <div class="fields">
+                <div class="field half">
+                    <label for="description">Description</label>
+                    <input th:field="*{description}" th:errorclass="is-invalid" type="text" name="description"
+                           id="description"/>
+                    <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger">Error
+                        message</small>
+                </div>
+                <div class="field quarter">
+                    <label>Engine:</label>
+
+                    <select id="engine" th:field="*{engine}" th:errorclass="is-invalid">
+                        <option th:value="GASOLINE">Gasoline</option>
+                        <option th:value="DIESEL">Diesel</option>
+                        <option th:value="ELECTRIC">Electric</option>
+                        <option th:value="HYBRID">Hybrid</option>
+                    </select>
+                    <small th:if="${#fields.hasErrors('engine')}" th:errors="*{engine}"
+                           class="text-danger">Error message</small>
+                </div>
+                <div class="field half">
+                    <label for="imageUrl">Image Url</label>
+                    <input th:field="*{imageUrl}" th:errorclass="is-invalid" type="text" name="imageUrl" id="imageUrl"/>
+                    <small th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="text-danger">Error
+                        message</small>
+                </div>
+                <div class="field half">
+                    <label for="mileage">Mileage</label>
+                    <input th:field="*{mileage}" th:errorclass="is-invalid" type="text" name="mileage"
+                           id="mileage"/>
+                    <small th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}" class="text-danger">Error
+                        message</small>
+                </div>
+                <div class="field half">
+                    <label for="price">Price</label>
+                    <input th:field="*{price}" th:errorclass="is-invalid" type="text" name="price"
+                           id="price"/>
+                    <small th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger">Error
+                        message</small>
+                </div>
+                <div class="field quarter">
+                    <label>Transmission:</label>
+
+                    <select id="transmission" th:field="*{transmission}" th:errorclass="is-invalid">
+                        <option th:value="MANUAL">Manual</option>
+                        <option th:value="AUTOMATIC">Automatic</option>
+                    </select>
+                    <small th:if="${#fields.hasErrors('transmission')}" th:errors="*{transmission}"
+                           class="text-danger">Error message</small>
+                </div>
+                <div class="field half">
+                    <label for="offerYear">Offer Year</label>
+                    <input th:field="*{offerYear}" th:errorclass="is-invalid" type="text" name="offerYear"
+                           id="offerYear"/>
+                    <small th:if="${#fields.hasErrors('offerYear')}" th:errors="*{offerYear}" class="text-danger">Error
+                        message</small>
+                </div>
+
+
+                <div class="field quarter">
+                    <label>Model:</label>
+
+                    <select id="brand" th:field="*{modelName}" th:errorclass="is-invalid">
+                        <option th:each="model : ${availableModels}"
+                                th:value="${model.name}"
+                                th:text="${model.name}"></option>
+                    </select>
+                    <small th:if="${#fields.hasErrors('modelName')}" th:errors="*{modelName}"
+                           class="text-danger">Error message</small>
+                </div>
+
+
+                <div class="field half text-right">
+                    <ul class="actions">
+                        <li><input type="submit" value="Add Offer" class="primary"></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+<footer th:replace="fragments/footer"/>
+<div th:replace="fragments/navbar"></div>
+<div th:replace="fragments/scripts"></div>
+</body>
+</html>

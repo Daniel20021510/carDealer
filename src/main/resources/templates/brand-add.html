@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"/>
+<body>
+<div id="wrapper">
+    <div th:replace="fragments/header"></div>
+    <section>
+        <header class="major">
+            <h2>Add Brand</h2>
+        </header>
+        <form th:method="post" th:action="@{/brands/add}" th:object="${brandModel}">
+            <div class="fields">
+                <div class="field half">
+                    <label for="name">Name</label>
+                    <input th:field="*{name}" th:errorclass="is-invalid" type="text" name="name" id="name"/>
+                    <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Error
+                        message</small>
+                </div>
+                <div class="field half text-right">
+                    <ul class="actions">
+                        <li><input type="submit" value="Add Brand" class="primary"></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+<footer th:replace="fragments/footer"/>
+<div th:replace="fragments/navbar"></div>
+<div th:replace="fragments/scripts"></div>
+</body>
+</html>
